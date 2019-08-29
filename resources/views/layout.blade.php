@@ -53,22 +53,22 @@
                 <a class="mobile-menu" id="mobile-collapse" href="#!"><span></span></a>
             </div>
             <div class="navbar-content scroll-div">
-                <ul class="nav pcoded-inner-navbar">
-                    <li class="nav-item pcoded-menu-caption">
-                        <label>Categoria</label>
-                    </li>
-                    <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project"
-                        class="nav-item pcoded-hasmenu">
-                        <a href="#!" class="nav-link"><span class="pcoded-micon"><i
-                                    class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
-                        <ul class="pcoded-submenu">
-                            <li class=""><a @click="menu=0">Categoria 1</a></li>
-                            <li class=""><a @click="menu=0">Categoria 2<span
-                                        class="pcoded-badge label label-danger">NEW</span></a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
+            <ul class="nav pcoded-inner-navbar">
+                <li class="nav-item pcoded-menu-caption">
+                    <label>Usuarios</label>
+                </li>
+                <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project"
+                    class="nav-item pcoded-hasmenu">
+                    <a href="#!" class="nav-link"><span class="pcoded-micon"><i
+                                class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
+                    <ul class="pcoded-submenu">
+                        <li class=""><a @click="menu=0" v-on:click="ruta='Categorias'">Categorias</a></li>
+                        <li class=""><a @click="menu=1" v-on:click="ruta='Usuarios'">Usuarios<span
+                                    class="pcoded-badge label label-danger">NEW</span></a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
         </div>
     </nav>
     <!-- [ navigati
