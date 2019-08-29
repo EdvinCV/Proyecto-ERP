@@ -62,7 +62,7 @@
                     <a href="#!" class="nav-link"><span class="pcoded-micon"><i
                                 class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
                     <ul class="pcoded-submenu">
-                        <li class=""><a @click="menu=0" v-on:click="ruta='Categorias'">Categorias</a></li>
+                        <li class=""><a @click="menu=0" v-on:click="ruta='presentacion'">Presentacion</a></li>
                         <li class=""><a @click="menu=1" v-on:click="ruta='Usuarios'">Usuarios<span
                                     class="pcoded-badge label label-danger">NEW</span></a></li>
                     </ul>

@@ -16,7 +16,7 @@
                         <v-container grid-list-md>
                             <v-layout wrap>
                                 <v-flex xs12 sm12 md12>
-                                    <v-text-field v-model="editedItem.nombre" label="Nombre Categoria"></v-text-field>
+                                    <v-text-field v-model="editedItem.nombre" label="Nombre Presentacion"></v-text-field>
                                 </v-flex>
                             </v-layout>
                         </v-container>
@@ -39,9 +39,9 @@
         </v-toolbar>
         
 
-        <v-data-table :headers="headers" :items="categoria" class="elevation-1" :search="search">
+        <v-data-table :headers="headers" :items="presentacion" class="elevation-1" :search="search">
             <template v-slot:items="props">
-                <td class="text-xs-right">{{ props.item.id }}</td>
+                <td class="text-xs-left">{{ props.item.id }}</td>
                 <td class="text-xs-left">{{ props.item.nombre }}</td>
                 <td class="justify-center layout px-0">
                     <v-icon small class="mr-2" @click="editItem(props.item)">
@@ -81,7 +81,7 @@
                     value: 'nombre' 
                 },
             ],
-            categoria: [],
+            presentacion: [],
             editedIndex: -1,
             editedItem: {
                 id: 0,
@@ -94,7 +94,7 @@
         }),
         computed: {
             formTitle() {
-                return this.editedIndex === -1 ? 'Nueva Categoria' : 'Editar Categoria'
+                return this.editedIndex === -1 ? 'Nueva Prsentacion' : 'Editar Presentacion'
             }
         },
         watch: {
@@ -110,29 +110,29 @@
                 this.error = 0;
                 this.errorMsj = [];
                 if (!this.editedItem.nombre)
-                    this.errorMsj.push('El nombre de la categoria no puede estar vacio');
+                    this.errorMsj.push('El nombre de la Presentacion no puede estar vacio');
                 if (this.errorMsj.length)
                     this.error = 1;
                 return this.error;
             },
             initialize() {
-                axios.get('/categoria')
+                axios.get('/presentacion')
                     .then(response => {
-                        this.categoria = response.data;
+                        this.presentacion = response.data;
                     })
                     .catch(errors => {
                         console.log(errors);
                     });
             },
             editItem(item) {
-                this.editedIndex = this.categoria.indexOf(item)
+                this.editedIndex = this.presentacion.indexOf(item)
                 this.editedItem = Object.assign({}, item)
                 this.dialog = true
             },
             deleteItem(item) {
                 let me=this;
                 swal.fire({
-                    title: 'Quieres eliminar esta Categoria?',
+                    title: 'Quieres eliminar esta Presentacion?',
                     text: "No podras revertir la eliminacion!",
                     type: 'warning',
                     showCancelButton: true,
@@ -142,7 +142,7 @@
                     cancelButtonText: "Cancelar"
                 }).then((result) => {
                     if (result.value) {
-                        axios.delete(`/categoria/${item.id}/delete`).then(response => {
+                        axios.delete(`/presentacion/${item.id}/delete`).then(response => {
                             me.initialize();
                             swal.fire({
                             position: 'top-end',
@@ -176,7 +176,7 @@
                 if (this.editedIndex > -1) {
                     axios({
                         method: 'put',
-                        url: '/categoria/actualizar',
+                        url: '/presentacion/actualizar',
                         data: {
                             id: this.editedItem.id,
                             nombre: this.editedItem.nombre
@@ -202,7 +202,7 @@
                 } else {
                     axios({
                         method: 'post',
-                        url: '/categoria/registrar',
+                        url: '/presentacion/registrar',
                         data: {
                             nombre: me.editedItem.nombre
                         }

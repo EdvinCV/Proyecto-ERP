@@ -24,7 +24,7 @@ window.swal = swal;
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 Vue.component('Test', require('./components/Test.vue').default);
-Vue.component('categoria', require('./components/Categoria.vue').default);
+Vue.component('presentacion', require('./components/Presentacion.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
