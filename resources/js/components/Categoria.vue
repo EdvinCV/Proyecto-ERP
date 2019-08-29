@@ -39,10 +39,10 @@
         </v-toolbar>
         
 
-        <v-data-table :headers="headers" :items="categorias" class="elevation-1" :search="search">
+        <v-data-table :headers="headers" :items="categoria" class="elevation-1" :search="search">
             <template v-slot:items="props">
                 <td class="text-xs-right">{{ props.item.id }}</td>
-                <td class="text-xs-right">{{ props.item.nombre }}</td>
+                <td class="text-xs-left">{{ props.item.nombre }}</td>
                 <td class="justify-center layout px-0">
                     <v-icon small class="mr-2" @click="editItem(props.item)">
                         edit
@@ -76,7 +76,10 @@
                     align: 'left',
                     value: 'id'
                 },
-                { text: 'Nombre', value: 'nombre' },
+                { 
+                    text: 'Nombre', 
+                    value: 'nombre' 
+                },
             ],
             categoria: [],
             editedIndex: -1,
@@ -173,9 +176,9 @@
                 if (this.editedIndex > -1) {
                     axios({
                         method: 'put',
-                        url: '/categoria/editar',
+                        url: '/categoria/actualizar',
                         data: {
-                            id:this.editedItem.id,
+                            id: this.editedItem.id,
                             nombre: this.editedItem.nombre
                         }
                     }).then(function (response) {
