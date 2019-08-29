@@ -1,15 +1,12 @@
 @extends('layout')
 @section('content')
-<<<<<<< HEAD
-    <template v-if="menu==0">
+    <template v-if="menu==4">
         <Categoria></Categoria>
-}    </template>
-=======
-    <template v-if="menu==1">
+    </template>
+    <template v-if="menu==2">
         <Roles></Roles>
     </template>
     <template v-if="menu==3">
         <Permisos></Permisos>
     </template>
->>>>>>> edvincv
 @endsection
