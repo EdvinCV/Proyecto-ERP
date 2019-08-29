@@ -24,8 +24,7 @@
                                 <li class=""><a @click="menu=0">Usuarios</a></li>
                                 <li class=""><a @click="menu=0">Persona</a></li>
                                 <li class=""><a @click="menu=1">Roles</a></li>
-                                <li class=""><a @click="menu=2">Permisos</a></li>
-                                <li class=""><a @click="menu=3">Gestion Permisos</a></li>
+                                <li class=""><a @click="menu=2">Gestion Permisos</a></li>
                             </ul>
                         </li>
                     @endif
@@ -35,8 +34,8 @@
                             <a href="#!" class="nav-link"><span class="pcoded-micon"><i
                                     class="feather icon-home"></i></span><span class="pcoded-mtext">Productos</span></a>
                             <ul class="pcoded-submenu">
-                                <li class=""><a @click="menu=4">Categorias</a></li>
-                                <li class=""><a @click="menu=0">Permisos</a></li>
+                                <li class=""><a @click="menu=3">Categorias</a></li>
+                                <li class=""><a @click="menu=4">Presentación</a></li>
                             </ul>
                         </li>
                     @endif

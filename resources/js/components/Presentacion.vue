@@ -3,9 +3,9 @@
         <v-toolbar flat color="white">
             <v-text-field v-model="search" append-icon="search" label="Buscar" single-line hide-details></v-text-field>
             <v-spacer></v-spacer>
-            <v-dialog v-model="dialog" max-width="500px">
+            <v-dialog v-model="dialog" max-width="600px">
                 <template v-slot:activator="{ on }">
-                    <v-btn color="primary" dark class="mb-2" v-on="on">Asignar Permiso</v-btn>
+                    <v-btn color="primary" dark class="mb-2" v-on="on">Nueva Presentacion</v-btn>
                 </template>
                 <v-card>
                     <v-card-title>
@@ -16,14 +16,7 @@
                         <v-container grid-list-md>
                             <v-layout wrap>
                                 <v-flex xs12 sm12 md12>
-                                    <v-text-field v-model="editedItem.nombrePermiso" label="Nombre Permiso" readonly></v-text-field>
-                                </v-flex>
-                                <v-flex xs12 sm12 md12 >
-                                    Estado
-                                    <v-switch 
-                                        v-model="switch1"
-                                        :label = "`${switch1.toString()}`"
-                                    ></v-switch>
+                                    <v-text-field v-model="editedItem.nombre" label="Nombre Presentacion"></v-text-field>
                                 </v-flex>
                             </v-layout>
                         </v-container>
@@ -46,13 +39,11 @@
         </v-toolbar>
         
 
-        <v-data-table :headers="headers" :items="permisos" class="elevation-1" :search="search">
+        <v-data-table :headers="headers" :items="presentacion" class="elevation-1" :search="search">
             <template v-slot:items="props">
                 <td class="text-xs-left">{{ props.item.id }}</td>
-                <td class="text-xs-left">{{ props.item.nombrePermiso }}</td>
-                <td class="text-xs-left">{{ props.item.nombreRol }}</td>
-                <td class="text-xs-left"><v-chip :color="getColor(props.item.estado)" dark>{{ verEstado(props.item.estado) }}</v-chip></td>
-                <td class="justify-center layout px-0">
+                <td class="text-xs-left">{{ props.item.nombre }}</td>
+                <td class="justify-right layout px-0">
                     <v-icon small class="mr-2" @click="editItem(props.item)">
                         edit
                     </v-icon>
@@ -77,7 +68,6 @@
         data: () => ({
             search: '',
             dialog: false,
-            switch1: false,
             error: 0,
             errorMsj: [],
             headers: [
@@ -86,85 +76,64 @@
                     align: 'left',
                     value: 'id'
                 },
-                { text: 'Permiso', value: 'nombrePermiso' },
-                { text: 'Rol', value: 'nombreRol' },
-                { text: 'Estado', value: 'estado' },
+                { 
+                    text: 'Nombre', 
+                    value: 'nombre' 
+                },
                 { text: 'Acciones', value: 'action', sortable: false},
             ],
-            permisos: [],
+            presentacion: [],
             editedIndex: -1,
             editedItem: {
                 id: 0,
-                nombreRol: '',
-                nombrePermiso: '',
-                estado: true,
+                nombre: '',
             },
             defaultItem: {
                 id: 0,
-                nombreRol: '',
-                nombrePermiso: '',
-                estado: true,
+                nombre: '',
             }
         }),
-
         computed: {
             formTitle() {
-                return this.editedIndex === -1 ? 'Asignar Permisos' : 'Editar Permiso'
+                return this.editedIndex === -1 ? 'Nueva Presentacion' : 'Editar Presentacion'
             }
         },
-
         watch: {
             dialog(val) {
-                val || this.close();
+                val || this.close()
             }
         },
-
         created() {
             this.initialize()
         },
-
         methods: {
-            getColor (estado) {
-                if (estado) return 'green'
-                else return 'red'
-                verEstado();            
-            },
-
-            verEstado (estado) {
-                if(estado) return "Activo";
-                else return "Inactivo";
-            },
-
             validate() {
                 this.error = 0;
                 this.errorMsj = [];
-                if (!this.editedItem.nombreRol)
-                    this.errorMsj.push('El nombre del rol no puede estar vacio');
+                if (!this.editedItem.nombre)
+                    this.errorMsj.push('El nombre de la Presentacion no puede estar vacio');
                 if (this.errorMsj.length)
                     this.error = 1;
                 return this.error;
             },
             initialize() {
-                let me = this;
-                axios.get('/permisos')
+                axios.get('/presentacion')
                     .then(response => {
-                        this.permisos = response.data;
+                        this.presentacion = response.data;
                     })
                     .catch(errors => {
                         console.log(errors);
                     });
             },
-
             editItem(item) {
-                this.editedIndex = this.permisos.indexOf(item)
+                this.editedIndex = this.presentacion.indexOf(item)
                 this.editedItem = Object.assign({}, item)
                 this.dialog = true
             },
-
             deleteItem(item) {
                 let me=this;
                 swal.fire({
-                    title: 'Quieres eliminar este Rol?',
+                    title: 'Quieres eliminar esta Presentacion?',
                     text: "No podras revertir la eliminacion!",
                     type: 'warning',
                     showCancelButton: true,
@@ -174,7 +143,7 @@
                     cancelButtonText: "Cancelar"
                 }).then((result) => {
                     if (result.value) {
-                        axios.delete(`/Rol/${item.id}/delete`).then(response => {
+                        axios.delete(`/presentacion/${item.id}/delete`).then(response => {
                             me.initialize();
                             swal.fire({
                             position: 'top-end',
@@ -192,7 +161,6 @@
                     }
                 });
             },
-
             close() {
                 this.error=0;
                 this.dialog = false;
@@ -201,7 +169,6 @@
                     this.editedIndex = -1
                 }, 300)
             },
-
             save() {
                 let me = this;
                 if (this.validate()) {
@@ -210,10 +177,10 @@
                 if (this.editedIndex > -1) {
                     axios({
                         method: 'put',
-                        url: '/permisos/editar',
+                        url: '/presentacion/actualizar',
                         data: {
-                            id:this.editedItem.id,
-                            estado:this.switch1
+                            id: this.editedItem.id,
+                            nombre: this.editedItem.nombre
                         }
                     }).then(function (response) {
                         swal.fire({
@@ -236,9 +203,9 @@
                 } else {
                     axios({
                         method: 'post',
-                        url: '/rol/nuevo',
+                        url: '/presentacion/registrar',
                         data: {
-                            nombre: me.editedItem.nombreRol
+                            nombre: me.editedItem.nombre
                         }
                     }).then(function (response) {
                         swal.fire({

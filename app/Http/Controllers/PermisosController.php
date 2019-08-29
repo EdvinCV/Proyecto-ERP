@@ -11,7 +11,7 @@ class PermisosController extends Controller
     //
     public function index(){
         $permisos = DB::table('rol_permisos')
-                        ->select(DB::raw('rol_permisos.estado, permisos.nombrePermiso, rols.nombreRol'))
+                        ->select(DB::raw(' rol_permisos.id,rol_permisos.estado, permisos.nombrePermiso, rols.nombreRol'))
                         ->join('permisos','rol_permisos.permisoId','=','permisos.id')
                         ->join('rols','rol_permisos.rolId','=','rols.id')->get();
         return $permisos;

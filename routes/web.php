@@ -18,7 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-//RutasCategorias
+//Rutas Categorias
 Route::get('/categoria', 'CategoriaController@index');
 Route::post('/categoria/registrar', 'CategoriaController@store');
 Route::put('/categoria/actualizar', 'CategoriaController@update');
@@ -29,3 +29,14 @@ Route::delete('/categoria/{categoria}/delete', 'CategoriaController@drop');
 Route::get('/rol', 'RolController@index');
 Route::post('/rol/nuevo', 'RolController@store');
 Route::put('/rol/editar', 'RolController@edit');
+//Rutas permisos
+Route::get('/permisos', 'PermisosController@index');
+Route::put('/permisos/editar', 'PermisosController@edit');
+//Rutas presentacion
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/presentacion', 'PresentacionController@index');
+Route::post('/presentacion/registrar', 'PresentacionController@store');
+Route::put('/presentacion/actualizar', 'PresentacionController@update');
+Route::put('/presentacion/desactivar', 'PresentacionController@desactivar');
+Route::put('/presentacion/activar', 'PresentacionController@activar');
+Route::delete('/presentacion/{presentacion}/delete', 'PresentacionController@drop');

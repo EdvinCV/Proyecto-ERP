@@ -41,9 +41,9 @@
 
         <v-data-table :headers="headers" :items="categoria" class="elevation-1" :search="search">
             <template v-slot:items="props">
-                <td class="text-xs-right">{{ props.item.id }}</td>
+                <td class="text-xs-left">{{ props.item.id }}</td>
                 <td class="text-xs-left">{{ props.item.nombre }}</td>
-                <td class="justify-center layout px-0">
+                <td class="justify-right layout px-0">
                     <v-icon small class="mr-2" @click="editItem(props.item)">
                         edit
                     </v-icon>
@@ -80,6 +80,7 @@
                     text: 'Nombre', 
                     value: 'nombre' 
                 },
+                { text: 'Acciones', value: 'action', sortable: false},
             ],
             categoria: [],
             editedIndex: -1,
