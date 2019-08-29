@@ -22,10 +22,10 @@
                                     class="feather icon-home"></i></span><span class="pcoded-mtext">Usuarios</span></a>
                             <ul class="pcoded-submenu">
                                 <li class=""><a @click="menu=0">Usuarios</a></li>
-                                <li class=""><a @click="menu=1">Persona</a></li>
-                                <li class=""><a @click="menu=2">Roles</a></li>
-                                <li class=""><a @click="menu=3">Permisos</a></li>
-                                <li class=""><a @click="menu=4">Gestion Permisos</a></li>
+                                <li class=""><a @click="menu=0">Persona</a></li>
+                                <li class=""><a @click="menu=1">Roles</a></li>
+                                <li class=""><a @click="menu=2">Permisos</a></li>
+                                <li class=""><a @click="menu=3">Gestion Permisos</a></li>
                             </ul>
                         </li>
                     @endif
@@ -35,7 +35,7 @@
                             <a href="#!" class="nav-link"><span class="pcoded-micon"><i
                                     class="feather icon-home"></i></span><span class="pcoded-mtext">Productos</span></a>
                             <ul class="pcoded-submenu">
-                                <li class=""><a @click="menu=0">Nuevo Usuario</a></li>
+                                <li class=""><a @click="menu=4">Categorias</a></li>
                                 <li class=""><a @click="menu=0">Permisos</a></li>
                             </ul>
                         </li>
@@ -99,28 +99,5 @@
                 </ul>
             </div>
         </div>
-<<<<<<< HEAD
-        <div class="navbar-content scroll-div">
-            <ul class="nav pcoded-inner-navbar">
-                <li class="nav-item pcoded-menu-caption">
-                    <label>Usuarios</label>
-                </li>
-                <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project"
-                    class="nav-item pcoded-hasmenu">
-                    <a href="#!" class="nav-link"><span class="pcoded-micon"><i
-                                class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
-                    <ul class="pcoded-submenu">
-                        <li class=""><a @click="menu=0" v-on:click="ruta='Roles'">Roles</a></li>
-                        <li class=""><a @click="menu=1" v-on:click="ruta='Usuarios'">Usuarios<span
-                                    class="pcoded-badge label label-danger">NEW</span></a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-<!-- [ navigation menu ] end -->
-=======
     </nav>
     <!-- [ navigati
->>>>>>> edvincv

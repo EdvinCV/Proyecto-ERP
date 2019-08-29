@@ -2,14 +2,7 @@
 <html lang="es">
 
 <head>
-    <title>ADAM/INCOFIN</title>
-    <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 10]>
-		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-		<![endif]-->
-    <!-- Meta -->
+    <title>ADAM - INCOFIN</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -26,7 +19,10 @@
     <link rel="stylesheet" href="assets/plugins/data-tables/css/datatables.min.css">
     <!-- vandor css -->
     <link rel="stylesheet" href="assets/css/style.css">
+
     
+    
+
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
@@ -40,8 +36,9 @@
         </div>
         <!-- [ Pre-loader ] End -->
 
-        <!-- [ navigation menu ] start -->
         @include('aside')
+        <!-- [ navigation menu ] start -->
+
         <!-- [ Header ] start -->
         <header class="navbar pcoded-header navbar-expand-lg navbar-light">
             <div class="m-header">
@@ -142,7 +139,6 @@
                             </div>
                         </div>
                     </li>
-                    <li><a href="#!" class="displayChatbox"><i class="icon feather icon-mail"></i></a></li>
                     <li>
                         <div class="dropdown drp-user">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -152,20 +148,22 @@
                                 <div class="pro-head">
                                     <img src="assets/images/user/avatar-1.jpg" class="img-radius"
                                         alt="User-Profile-Image">
-                                    <span>John Doe</span>
-                                    <a href="auth-signin.html" class="dud-logout" title="Logout">
+                                    <span>{{ auth()->user()->name }}</span>
+                                    <a href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();" class="dud-logout" title="Cerrar Sesión">
                                         <i class="feather icon-log-out"></i>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
                                     </a>
                                 </div>
                                 <ul class="pro-body">
-                                    <li><a href="#!" class="dropdown-item"><i class="feather icon-settings"></i>
-                                            Settings</a></li>
-                                    <li><a href="#!" class="dropdown-item"><i class="feather icon-user"></i> Profile</a>
-                                    </li>
-                                    <li><a href="message.html" class="dropdown-item"><i class="feather icon-mail"></i>
-                                            My Messages</a></li>
-                                    <li><a href="auth-signin.html" class="dropdown-item"><i
-                                                class="feather icon-lock"></i> Lock Screen</a></li>
+                                    <li><a href="#!" class="dropdown-item"><i class="feather icon-user"></i> Perfil</a></li>
+                                    <li><a href="#!" class="dropdown-item"><i class="feather icon-settings"></i>Configuraciones</a></li>
+                                    
+                                    
                                 </ul>
                             </div>
                         </div>
@@ -186,174 +184,7 @@
                 <a href="#!" class="h-close-text"><i class="feather icon-chevrons-right"></i></a>
                 <div class="main-friend-cont scroll-div">
                     <div class="main-friend-list">
-                        <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe">
-                            <a class="media-left" href="#!"><img class="media-object img-radius"
-                                    src="assets/images/user/avatar-1.jpg" alt="Generic placeholder image ">
-                                <div class="live-status">3</div>
-                            </a>
-                            <div class="media-body">
-                                <h6 class="chat-header">Josephin Doe<small class="d-block text-c-green">Typing . .
-                                    </small></h6>
-                            </div>
-                        </div>
-                        <div class="media userlist-box" data-id="2" data-status="online" data-username="Lary Doe">
-                            <a class="media-left" href="#!"><img class="media-object img-radius"
-                                    src="assets/images/user/avatar-2.jpg" alt="Generic placeholder image">
-                                <div class="live-status">1</div>
-                            </a>
-                            <div class="media-body">
-                                <h6 class="chat-header">Lary Doe<small class="d-block text-c-green">online</small></h6>
-                            </div>
-                        </div>
-                        <div class="media userlist-box" data-id="3" data-status="online" data-username="Alice">
-                            <a class="media-left" href="#!"><img class="media-object img-radius"
-                                    src="assets/images/user/avatar-3.jpg" alt="Generic placeholder image"></a>
-                            <div class="media-body">
-                                <h6 class="chat-header">Alice<small class="d-block text-c-green">online</small></h6>
-                            </div>
-                        </div>
-                        <div class="media userlist-box" data-id="4" data-status="offline" data-username="Alia">
-                            <a class="media-left" href="#!"><img class="media-object img-radius"
-                                    src="assets/images/user/avatar-1.jpg" alt="Generic placeholder image">
-                                <div class="live-status">1</div>
-                            </a>
-                            <div class="media-body">
-                                <h6 class="chat-header">Alia<small class="d-block text-muted">10 min ago</small></h6>
-                            </div>
-                        </div>
-                        <div class="media userlist-box" data-id="5" data-status="offline" data-username="Suzen">
-                            <a class="media-left" href="#!"><img class="media-object img-radius"
-                                    src="assets/images/user/avatar-4.jpg" alt="Generic placeholder image"></a>
-                            <div class="media-body">
-                                <h6 class="chat-header">Suzen<small class="d-block text-muted">15 min ago</small></h6>
-                            </div>
-                        </div>
-                        <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe">
-                            <a class="media-left" href="#!"><img class="media-object img-radius"
-                                    src="assets/images/user/avatar-1.jpg" alt="Generic placeholder image ">
-                                <div class="live-status">3</div>
-                            </a>
-                            <div class="media-body">
-                                <h6 class="chat-header">Josephin Doe<small class="d-block text-c-green">Typing . .
-                                    </small></h6>
-                            </div>
-                        </div>
-                        <div class="media userlist-box" data-id="2" data-status="online" data-username="Lary Doe">
-                            <a class="media-left" href="#!"><img class="media-object img-radius"
-                                    src="assets/images/user/avatar-2.jpg" alt="Generic placeholder image">
-                                <div class="live-status">1</div>
-                            </a>
-                            <div class="media-body">
-                                <h6 class="chat-header">Lary Doe<small class="d-block text-c-green">online</small></h6>
-                            </div>
-                        </div>
-                        <div class="media userlist-box" data-id="3" data-status="online" data-username="Alice">
-                            <a class="media-left" href="#!"><img class="media-object img-radius"
-                                    src="assets/images/user/avatar-3.jpg" alt="Generic placeholder image"></a>
-                            <div class="media-body">
-                                <h6 class="chat-header">Alice<small class="d-block text-c-green">online</small></h6>
-                            </div>
-                        </div>
-                        <div class="media userlist-box" data-id="4" data-status="offline" data-username="Alia">
-                            <a class="media-left" href="#!"><img class="media-object img-radius"
-                                    src="assets/images/user/avatar-1.jpg" alt="Generic placeholder image">
-                                <div class="live-status">1</div>
-                            </a>
-                            <div class="media-body">
-                                <h6 class="chat-header">Alia<small class="d-block text-muted">10 min ago</small></h6>
-                            </div>
-                        </div>
-                        <div class="media userlist-box" data-id="5" data-status="offline" data-username="Suzen">
-                            <a class="media-left" href="#!"><img class="media-object img-radius"
-                                    src="assets/images/user/avatar-4.jpg" alt="Generic placeholder image"></a>
-                            <div class="media-body">
-                                <h6 class="chat-header">Suzen<small class="d-block text-muted">15 min ago</small></h6>
-                            </div>
-                        </div>
-                        <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe">
-                            <a class="media-left" href="#!"><img class="media-object img-radius"
-                                    src="assets/images/user/avatar-1.jpg" alt="Generic placeholder image ">
-                                <div class="live-status">3</div>
-                            </a>
-                            <div class="media-body">
-                                <h6 class="chat-header">Josephin Doe<small class="d-block text-c-green">Typing . .
-                                    </small></h6>
-                            </div>
-                        </div>
-                        <div class="media userlist-box" data-id="2" data-status="online" data-username="Lary Doe">
-                            <a class="media-left" href="#!"><img class="media-object img-radius"
-                                    src="assets/images/user/avatar-2.jpg" alt="Generic placeholder image">
-                                <div class="live-status">1</div>
-                            </a>
-                            <div class="media-body">
-                                <h6 class="chat-header">Lary Doe<small class="d-block text-c-green">online</small></h6>
-                            </div>
-                        </div>
-                        <div class="media userlist-box" data-id="3" data-status="online" data-username="Alice">
-                            <a class="media-left" href="#!"><img class="media-object img-radius"
-                                    src="assets/images/user/avatar-3.jpg" alt="Generic placeholder image"></a>
-                            <div class="media-body">
-                                <h6 class="chat-header">Alice<small class="d-block text-c-green">online</small></h6>
-                            </div>
-                        </div>
-                        <div class="media userlist-box" data-id="4" data-status="offline" data-username="Alia">
-                            <a class="media-left" href="#!"><img class="media-object img-radius"
-                                    src="assets/images/user/avatar-1.jpg" alt="Generic placeholder image">
-                                <div class="live-status">1</div>
-                            </a>
-                            <div class="media-body">
-                                <h6 class="chat-header">Alia<small class="d-block text-muted">10 min ago</small></h6>
-                            </div>
-                        </div>
-                        <div class="media userlist-box" data-id="5" data-status="offline" data-username="Suzen">
-                            <a class="media-left" href="#!"><img class="media-object img-radius"
-                                    src="assets/images/user/avatar-4.jpg" alt="Generic placeholder image"></a>
-                            <div class="media-body">
-                                <h6 class="chat-header">Suzen<small class="d-block text-muted">15 min ago</small></h6>
-                            </div>
-                        </div>
-                        <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe">
-                            <a class="media-left" href="#!"><img class="media-object img-radius"
-                                    src="assets/images/user/avatar-1.jpg" alt="Generic placeholder image ">
-                                <div class="live-status">3</div>
-                            </a>
-                            <div class="media-body">
-                                <h6 class="chat-header">Josephin Doe<small class="d-block text-c-green">Typing . .
-                                    </small></h6>
-                            </div>
-                        </div>
-                        <div class="media userlist-box" data-id="2" data-status="online" data-username="Lary Doe">
-                            <a class="media-left" href="#!"><img class="media-object img-radius"
-                                    src="assets/images/user/avatar-2.jpg" alt="Generic placeholder image">
-                                <div class="live-status">1</div>
-                            </a>
-                            <div class="media-body">
-                                <h6 class="chat-header">Lary Doe<small class="d-block text-c-green">online</small></h6>
-                            </div>
-                        </div>
-                        <div class="media userlist-box" data-id="3" data-status="online" data-username="Alice">
-                            <a class="media-left" href="#!"><img class="media-object img-radius"
-                                    src="assets/images/user/avatar-3.jpg" alt="Generic placeholder image"></a>
-                            <div class="media-body">
-                                <h6 class="chat-header">Alice<small class="d-block text-c-green">online</small></h6>
-                            </div>
-                        </div>
-                        <div class="media userlist-box" data-id="4" data-status="offline" data-username="Alia">
-                            <a class="media-left" href="#!"><img class="media-object img-radius"
-                                    src="assets/images/user/avatar-1.jpg" alt="Generic placeholder image">
-                                <div class="live-status">1</div>
-                            </a>
-                            <div class="media-body">
-                                <h6 class="chat-header">Alia<small class="d-block text-muted">10 min ago</small></h6>
-                            </div>
-                        </div>
-                        <div class="media userlist-box" data-id="5" data-status="offline" data-username="Suzen">
-                            <a class="media-left" href="#!"><img class="media-object img-radius"
-                                    src="assets/images/user/avatar-4.jpg" alt="Generic placeholder image"></a>
-                            <div class="media-body">
-                                <h6 class="chat-header">Suzen<small class="d-block text-muted">15 min ago</small></h6>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -441,6 +272,7 @@
                         </div>
                         <v-app>
                         @yield('content')
+                        
                         </v-app>
                     </div>
                 </div>
@@ -449,12 +281,15 @@
     </div>
      <!-- datatable Js -->
     <script src="js/app.js"></script>
-    <script src="assets/js/vendor-all.min.js"></script>
-    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/pcoded.min.js"></script>
-
+    <script src="{{ asset('assets/js/vendor-all.min.js') }}"></script>
+	<script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/pcoded.min.js') }}"></script>
+    
 
    
+  
+
+    
 </body>
 
 </html>
