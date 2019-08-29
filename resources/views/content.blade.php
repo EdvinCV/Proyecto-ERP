@@ -1,8 +1,6 @@
 @extends('layout')
 @section('content')
-    <template v-if="menu==4">
-        <Categoria></Categoria>
-    </template>
+    <categoria></categoria>
     <template v-if="menu==2">
         <Roles></Roles>
     </template>
