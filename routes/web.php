@@ -12,9 +12,14 @@
 */
 
 Route::get('/', function () {
-    return view('content');
-});
+    return redirect('/home');
+})->middleware('auth');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//Rutas roles
+Route::get('/rol', 'RolController@index');
+Route::post('/rol/nuevo', 'RolController@store');
+Route::put('/rol/editar', 'RolController@edit');
